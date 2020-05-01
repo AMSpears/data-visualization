@@ -33,9 +33,9 @@ class MapView extends Component {
   render() {
     return (
       <div>
-        <div className='sidebarStyle'>
+       {/*<div className='sidebarStyle'>
           <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
-        </div>
+    </div>*/}
         <div id = 'map-container'></div>
       </div>
     )

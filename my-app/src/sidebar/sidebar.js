@@ -4,7 +4,10 @@ import './sidebar.css'
 const sidebar = () => {
   return (
     <div className = 'sidebar-container'>
-      <div>Sidebar goes here</div>
+      <div>
+        <h1>Search Map</h1>
+        <input type= 'text' placeholder= 'Type state name for stats...' />
+      </div>
     </div>
   )
 }
