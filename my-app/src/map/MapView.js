@@ -1,47 +1,46 @@
-import React, {Component} from 'react'
-import mapboxgl from 'mapbox-gl'
+import React, { useState } from "react";
+import ReactMapGL, { Marker} from "react-map-gl";
+import * as data from "../data/data.json";
 import './mapView.css'
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY
+export const MapView = () => {
+  const [viewport, setViewport] = useState({
+    latitude: 39.381266,
+    longitude: -97.922211,
+    width: "100vw",
+    height: "100vh",
+    zoom: 2
+  })
 
-class MapView extends Component {
-  constructor() {
-    super()
-    this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 2
-    }
-  }
-  componentDidMount() {
-    const map = new mapboxgl.Map({
-      container: 'map-container',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
-    })
-
-    map.on('move', () => {
-      this.setState({
-        lng: map.getCenter().lng.toFixed(2),
-        lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      })
-    })
-  }
-
-  render() {
-    return (
-      <div>
-       {/*<div className='sidebarStyle'>
-          <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
-    </div>*/}
-        <div id = 'map-container'></div>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <ReactMapGL
+        {...viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
+        mapStyle = "mapbox://styles/mapbox/streets-v11"
+        onViewportChange={viewport => {
+          setViewport(viewport);
+        }}
+      >
+         {
+           data.allStates.map((place, idx) => (
+          <Marker
+            key={idx}
+            latitude={place.latitude}
+            longitude={place.longitude}
+            >
+            <button
+              className="marker-btn"
+            >
+              <img src="/location-pin.svg" alt="City" />
+            </button>
+          </Marker>
+         ))
+      }
+      </ReactMapGL>
+    </div>
+  );
 }
-
 
 
 export default MapView

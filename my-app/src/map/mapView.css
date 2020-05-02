@@ -1,22 +1,16 @@
-/* .sidebarStyle {
-  display: inline-block;
+/* #map-container {
   position: absolute;
-  top: 0;
-  right: 0;
-  margin: 12px;
-  background-color: #404040;
-  color: #ffffff;
-  z-index: 1 !important;
-  padding: 6px;
-  font-weight: bold;
-} */
-
-#map-container {
-  position: absolute;
-  /* top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0; */
   height: 100%;
   width: 100%;
+} */
+
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.marker-btn img {
+  width: 20px;
+  height: 20px;
 }
